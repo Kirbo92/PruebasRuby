@@ -27,6 +27,36 @@ module Programa
 
 	end
 
+
+	class App
+		def initialize
+			@vista = nil
+		end
+
+		def vista=(v)
+			@vista = v
+		end
+
+		def lista
+			@nombres = []
+			File.open("Nombres.txt", 'r') do |fp|
+
+				id = 1
+
+				fp.readlines.each do |linea|
+
+					nombres << Nombres.new(*linea.chomp.split(/,/))
+
+					id+=1
+				end
+			end
+
+			@vista.nombres_leidos
+
+		end
+
+	end
+
 	class Cli
 
 		def lista
