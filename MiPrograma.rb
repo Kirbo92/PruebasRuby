@@ -17,6 +17,10 @@ module Programa
 			@busqueda
 		end
 
+		def buscado?
+			@busqueda
+		end
+
 		def to_s
 			@nomb
 		end
@@ -36,7 +40,7 @@ module Programa
 
 					printf("%3d - %s\n",id, n)
 					printf("%s\n", n.creacion)
-					printf("%s\n", n.busqueda) if n.busqueda
+					printf("%s\n", n.busqueda) if n.encontrado?
 					id+=1
 				end
 			end
