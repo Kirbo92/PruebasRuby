@@ -37,6 +37,10 @@ module Programa
 			@vista = v
 		end
 
+		def nombres
+			@nombres
+		end
+
 		def lista
 			@nombres = []
 			File.open("Nombres.txt", 'r') do |fp|
@@ -45,8 +49,7 @@ module Programa
 
 				fp.readlines.each do |linea|
 
-					@nombres << Nombres.new(*linea.chomp.split(/,/))
-
+					@nombres << [id, Nombres.new(*linea.chomp.split(/,/))]
 					id+=1
 				end
 			end
@@ -59,8 +62,19 @@ module Programa
 
 	class Cli
 
+		def initialize(d)
+			@app = d
+		end
+
+		def self.run
+			ui = Cli.new(App.new)
+			ui.empezar
+		end
+
 		def nombres_leidos
-			puts "Funcionando"
+			@app.nombres.each do |id,n|
+				puts "#{id} - #{n}"
+			end
 		end
 
 		def lista
@@ -68,10 +82,7 @@ module Programa
 		end
 
 		def empezar
-
-			@app = App.new
 			@app.vista = self
-
 			begin
 				cmd = ARGV.shift.to_sym
 
@@ -84,8 +95,8 @@ module Programa
 					puts "Vamos a buscar"
 				end
 
-			rescue
-				puts "Mete un comando correcto"
+			#rescue
+			#	puts "Mete un comando correcto"
 			end
 		end
 
@@ -94,6 +105,6 @@ end
 
 
 
+# Hemos cambiado a llamada directa a Run
+Programa::Cli.run
 
-p = Programa::Cli.new
-p.empezar
