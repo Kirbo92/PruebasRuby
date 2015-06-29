@@ -45,7 +45,7 @@ module Programa
 
 				fp.readlines.each do |linea|
 
-					nombres << Nombres.new(*linea.chomp.split(/,/))
+					@nombres << Nombres.new(*linea.chomp.split(/,/))
 
 					id+=1
 				end
@@ -59,24 +59,19 @@ module Programa
 
 	class Cli
 
+		def nombres_leidos
+			puts "Funcionando"
+		end
+
 		def lista
-			File.open("Nombres.txt", 'r') do |fp|
-
-				id = 1
-
-				fp.readlines.each do |linea|
-
-					n = Nombres.new(*linea.chomp.split(/,/))
-
-					printf("%3d - %s\n",id, n)
-					printf("%s\n", n.creacion)
-					printf("%s\n", n.busqueda) if n.encontrado?
-					id+=1
-				end
-			end
+			@app.lista
 		end
 
 		def empezar
+
+			@app = App.new
+			@app.vista = self
+
 			begin
 				cmd = ARGV.shift.to_sym
 
