@@ -7,6 +7,11 @@ before do
 end
 
 get '/nombres' do
+	@app.lista
+end
+
+public 
+def nombres_leidos
 	erb :nombres
 end
 

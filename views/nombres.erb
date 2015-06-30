@@ -1,1 +1,9 @@
-Hola
+<h1>Listado de nombres</h1>
+
+<ul>
+	<% @app.nombres.each do |id, nombre| %>
+		<li>
+			<%= nombre %>
+		</li>
+	<% end %>
+</ul>

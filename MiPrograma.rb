@@ -62,8 +62,8 @@ module Programa
 
 	class Cli
 
-		def initialize(d)
-			@app = d
+		def initialize(app)
+			@app = app
 		end
 
 		def self.run
@@ -82,7 +82,9 @@ module Programa
 		end
 
 		def empezar
+
 			@app.vista = self
+
 			begin
 				cmd = ARGV.shift.to_sym
 
@@ -106,5 +108,5 @@ end
 
 
 # Hemos cambiado a llamada directa a Run
-Programa::Cli.run
+#Programa::Cli.run
 
